@@ -34,6 +34,8 @@ def gamble(i):
                     i = i + e
 ##                    print i
                     d = d + 1
+                elif i < e and i > 0:
+                    d = d + 1
                 else:
 ##                    print "You lose!"
                     return 0
@@ -52,5 +54,4 @@ def iterate(w):
             x = x + 1
     print (str(y) + ' Loses')
     print (str(z) + ' Wins')
-iterate(1000)
-
+iterate (1000)
