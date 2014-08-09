@@ -1,0 +1,72 @@
+from tkinter import *
+
+a = 25
+b = 100
+x = 0
+y = 0
+z = 0
+
+
+def increment():
+    global x
+    global y
+    global z
+    respond = Label(incrementGUI, text=x).grid(row=2, column=0)
+    x = x + 1 + y
+
+
+def update():
+    global a
+    global b
+    global x
+    global y
+    global z
+    if x > 0:
+        x = x - y + z
+    elif x <= 0:
+        x = x + z
+    respond = Label(textvariable=x, text=x).grid(row=2, column=0)
+    respond = Label(textvariable=y, text=y).grid(row=1, column=3)
+    respond = Label(textvariable=z, text=z).grid(row=2, column=3)
+    incrementGUI.after(1000, update)
+
+
+def workers():
+    global a
+    global x
+    global y
+    if x > a:
+        x -= a
+        y += 1
+        a *= 2
+    cost = Label(textvariab=a, text=a).grid(row=1, column=2)
+
+
+def investments():
+    global b
+    global x
+    global z
+    if x >= b:
+        x -= b
+        z += 1
+        b *= 3
+    cost = Label(textvariab=b, text=b).grid(row=2, column=2)
+
+incrementGUI = Tk()
+incrementGUI.geometry('300x100+200+200')
+incrementGUI.title('Incremental Program')
+
+label = Label(text='Click me!', fg='white', bg='black')
+label.grid(row=0, column=0, sticky=N)
+button = Button(incrementGUI, text='CLICK', command=increment)
+button_workers = Button(incrementGUI, text='Workers', command=workers).grid(row=1, column=1)
+button_Investments = Button(incrementGUI, text='Investments', command=investments).grid(row=2, column=1)
+cost = Label(text='cost ($)').grid(row=0, column=2)
+number_bought = Label(text='Owned').grid(row=0, column=3)
+button.grid(row=1, column=0, sticky=S)
+update()
+workers()
+investments()
+incrementGUI.mainloop()
+
+
